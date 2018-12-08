@@ -1,0 +1,64 @@
+{
+  "name": "sample-backend",
+  "version": "1.0.0",
+  "description": "This is starter for all the backend node express project.for this project I am using typescript,mocha for testing, express-validator, apiDoc for generating apidoc, gulp, istanbul for code coverage.",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "gulp",
+    "test": "istanbul cover node_modules/mocha/bin/_mocha",
+    "prestart": "gulp",
+    "start": "nodemon bin/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nirajmark/backend-starter.git"
+  },
+  "keywords": [
+    "starter",
+    "node",
+    "express",
+    "mocha",
+    "istanbul"
+  ],
+  "author": "Niraj Markandey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nirajmark/backend-starter/issues"
+  },
+  "homepage": "https://github.com/nirajmark/backend-starter#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.3",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "express-validator": "^5.3.0",
+    "jwt-simple": "^0.5.1",
+    "moment": "^2.22.1",
+    "mongoose": "^5.1.2",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.1",
+    "@types/jasmine": "^3.3.0",
+    "@types/jwt-simple": "^0.5.33",
+    "@types/mongoose": "^5.0.14",
+    "@types/node": "^10.1.2",
+    "@types/passport": "^0.4.5",
+    "@types/passport-jwt": "^3.0.1",
+    "@types/superagent": "^3.5.8",
+    "chai": "^4.1.2",
+    "gulp": "^4.0.0",
+    "gulp-apidoc": "^0.2.7",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-typescript": "^4.0.2",
+    "gulp-util": "^3.0.8",
+    "istanbul": "^1.0.0-alpha.2",
+    "mocha": "^5.2.0",
+    "supertest": "^3.1.0",
+    "tslint": "^5.10.0",
+    "typescript": "^2.8.3",
+    "vinyl-fs": "^3.0.3"
+  }
+}
