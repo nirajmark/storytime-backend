@@ -23,6 +23,13 @@ export interface IMember extends mongoose.Document {
     comparePassword(candidatePassword: string): Promise<boolean>;
 }
 
+export interface IPersonalInfo extends mongoose.Document {
+    address: string;
+    phone1: string;
+    phone2: string;
+    email: string;
+}
+
 const packSchema = new mongoose.Schema({
     type: String,
     count: Number
@@ -33,6 +40,13 @@ const countSchema = new mongoose.Schema({
     lunch_pack: packSchema,
     snacks_pack: packSchema,
     dinner_pack: packSchema
+});
+
+export const personalInfoSchema = new mongoose.Schema({
+    address: String,
+    phone1: String,
+    phone2: String,
+    email: String
 });
 
 export const schema = new mongoose.Schema({
@@ -78,7 +92,9 @@ schema.methods.comparePassword = function (candidatePassword: string): Promise<b
 };
 
 export const model = mongoose.model<IMember>("Member", schema);
+export const personalInfoModel = mongoose.model<IPersonalInfo>("PersonalInfo", schema);
 
-export const userCleanCollection = () => model.remove({}).exec();
+export const memberCleanCollection = () => model.remove({}).exec();
+export const personalInfoCleanCollection = () => personalInfoModel.remove({}).exec();
 
 export default model;
