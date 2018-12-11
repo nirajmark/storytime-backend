@@ -56,3 +56,5 @@ dump
 
 apidoc
 /infra/mongo_data/*
+
+.env
