@@ -44,6 +44,36 @@ class Member {
             res.status(400).json({ "message": "Member not created", "errors": err });
         }
     }
+
+    public updatePassword = async (req, res) => {
+        try {
+            req.checkBody("oldPassword", "id Should not be empty").notEmpty();
+            req.checkBody("newPassword", "Password Should not be empty").notEmpty();
+            req.checkParam("id", "id should not be empty");
+
+            let errors = req.validationErrors();
+            if (errors) throw errors;
+            let member = await MemberModel.findById(req.params.id).exec();
+            if (member === null) throw "User not found";
+            let success = await member.comparePassword(req.body.oldPassword);
+
+            if (success) {
+                member.password = req.body.newPassword;
+                const updatedMember = await member.save();
+                if (updatedMember) {
+                    res.json({
+                        "message": "password updated successfully"
+                    });
+                } else {
+                    throw "error while updating password";
+                }
+            } else {
+                throw "old password is incorrect!";
+            }
+        } catch (err) {
+            res.status(400).json({ "message": "Password change unsuccessfull", "errors": err });
+        }
+    }
 }
 
 export default new Member();
