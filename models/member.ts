@@ -61,9 +61,14 @@ export const schema = new mongoose.Schema({
         required: true
     },
     active: {
-        type: Boolean
+        type: Boolean,
+        default: true
     },
-    count : countSchema,
+    password_changed: {
+        type: Boolean,
+        default: false
+    },
+    pack : countSchema,
     personalInformation: mongoose.Schema.Types.ObjectId,
 }, { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } });
 
