@@ -3,6 +3,7 @@ import * as passport from "passport";
 import * as moment from "moment";
 import { Strategy, ExtractJwt } from "passport-jwt";
 import { model as User, IUser } from "../models/user";
+import { model as MemberModel, IMember } from "../models/member";
 
 class Auth {
 
@@ -32,12 +33,17 @@ class Auth {
         try {
             req.checkBody("username", "Invalid username").notEmpty();
             req.checkBody("password", "Invalid password").notEmpty();
+            req.checkBody("type", "Type not present").notEmpty();
 
             let errors = req.validationErrors();
             if (errors) throw errors;
 
-            let user = await User.findOne({ "username": req.body.username }).exec();
-
+            let user = null;
+            if (req.body.type === "admin") {
+                user = await User.findOne({ "username": req.body.username }).exec();
+            } else {
+                user = await MemberModel.findOne({ "username": req.body.username }).exec();
+            }
             if (user === null) throw "User not found";
 
             let success = await user.comparePassword(req.body.password);

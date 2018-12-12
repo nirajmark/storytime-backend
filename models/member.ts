@@ -64,6 +64,10 @@ export const schema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
+    role: {
+        type: String,
+        default: "member"
+    },
     password_changed: {
         type: Boolean,
         default: false
